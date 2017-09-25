@@ -4,7 +4,7 @@ const app = require('../src/app');
 const http = require('http');
 const debug = require('debug')('nodestr:server');
 
-const port = normalzarPort(process.env.port || 3000);
+const port = normalizarPort(process.env.port || 3000);
 app.set('port', port);
 
 const server = http.createServer(app);
@@ -14,7 +14,7 @@ server.on('error', onError);
 server.on('listening', onListening);
 console.log('API rodando na porta ' + port);
 
-function normalzarPort(val) {
+function normalizarPort(val) {
     const port = parseInt(val, 10);
 
     if (isNaN(port)) {

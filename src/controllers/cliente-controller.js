@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var validatorContract = require('../validators/fluent-validator');
 var clienteRepositorio = require('../repositorios/cliente/cliente-repositorio');
 
-exports.post = async(req, res, next) => {
+exports.post = async (req, res, next) => {
     try {
         await clienteRepositorio.create(req.body);
         res.status(200).send({
@@ -18,12 +18,12 @@ exports.post = async(req, res, next) => {
     }
 };
 
-exports.get = async(req, res, next) => {
+exports.get = async (req, res, next) => {
     try {
-        var clientes = clienteRepositorio.get();
+        var clientes = await clienteRepositorio.get();
 
         if (typeof clientes !== 'undefined' && clientes.length > 0) {
-            res.status(200).send(data);
+            res.status(200).send(clientes);
         } else {
             res.status(404).send();
         }

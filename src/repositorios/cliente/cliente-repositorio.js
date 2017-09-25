@@ -3,12 +3,12 @@
 const mongoose = require('mongoose');
 const ClienteModel = mongoose.model('Cliente');
 
-exports.create = async(data) => {
+exports.create = async (data) => {
     var novoCliente = new ClienteModel(data);
     await novoCliente.save();
 };
 
-exports.get = async() => {
+exports.get = async () => {
     var clientes = await ClienteModel
         .find({
             ativo: true
