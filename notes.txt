@@ -1,0 +1,35 @@
+Pacotes Node
+
+npm init //Para iniciar uma aplicação.
+
+npm install --save http
+npm install --save express
+npm install --save debug
+npm install --save body-parser
+npm install --save mongoose
+
+npm install --save-dev nodemon
+
+Importando module node.
+	require('[pkg]')--utilizado para utilizar um pacote, comparando com o C# o mesmo que using [pkg]
+	Ex:
+		const http = require('http'); -->  importar da pasta node_modules
+		const express = require('express'); -->  importar da pasta node_modules
+		const debug = require('debug')('nodestr:server'); -->  importar da pasta node_modules
+		const app = require('../src/app'); -->  importar da aplicação.
+
+		
+exports.get = (req, res, next) => {
+    produtoRepositorio
+        .get()
+        .then(data => {
+            if (typeof data !== 'undefined' && data.length > 0) {
+                res.status(200).send(data);
+            } else {
+                res.status(404).send();
+            }
+        })
+        .catch(e => {
+            res.status(400).send(e);
+        });
+};
