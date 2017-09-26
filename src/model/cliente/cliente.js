@@ -9,10 +9,19 @@ const clienteSchema = new Schema({
         required: true,
         trim: true
     },
+    username: {
+        type: String,
+        required: true,
+        trim: true,
+        index: true,
+        unique: true
+    },
     email: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
+        index: true,
+        unique: true
     },
     senha: {
         type: String,
@@ -22,7 +31,7 @@ const clienteSchema = new Schema({
     ativo: {
         type: Boolean,
         default: true
-    },    
+    },
 });
 
 module.exports = mongoose.model('Cliente', clienteSchema);

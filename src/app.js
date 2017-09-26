@@ -3,11 +3,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const config = require('./config');
 
 const app = express();
 const router = express.Router();
 
-mongoose.connect('mongodb://admin:admin@ds040017.mlab.com:40017/node-store', {
+mongoose.connect(config.connectionString, {
     useMongoClient: true
 });
 

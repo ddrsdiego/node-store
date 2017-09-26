@@ -4,8 +4,17 @@ var mongoose = require('mongoose');
 var validatorContract = require('../validators/fluent-validator');
 var clienteRepositorio = require('../repositorios/cliente/cliente-repositorio');
 
-exports.post = async (req, res, next) => {
+exports.post = async(req, res, next) => {
     try {
+        var cliente = await clienteRepositorio.getByEmail(req.body.email)
+        if (cliente !== null) {
+            res.status(400).send({
+                message: 'Cliente já cadastrado com o email ' + req.body.email + '!'
+            }).end();
+            return;
+        }
+
+
         await clienteRepositorio.create(req.body);
         res.status(200).send({
             message: 'Cliente criado com sucesso!'
@@ -18,7 +27,7 @@ exports.post = async (req, res, next) => {
     }
 };
 
-exports.get = async (req, res, next) => {
+exports.get = async(req, res, next) => {
     try {
         var clientes = await clienteRepositorio.get();
 
