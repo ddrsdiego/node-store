@@ -8,6 +8,7 @@ npm install --save debug
 npm install --save body-parser
 npm install --save mongoose
 
+npm install -g nodemon
 npm install --save-dev nodemon
 
 Importando module node.
