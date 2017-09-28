@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const ProdutoModel = mongoose.model('Produto');
 
 exports.get = async() => {
-    var produto = await ProdutoModel
+    let produto = await ProdutoModel
         .find({
             ativo: true
         }, 'titulo preco slug');
@@ -25,12 +25,15 @@ exports.getById = async function (id) {
     return produto;
 }
 
-exports.getByTags = (tags) => {
-    return ProdutoModel
+exports.getByTags = async(tags) => {
+
+    let produtos = await ProdutoModel
         .find({
             tags: tags,
             ativo: true,
         }, 'titulo descricao preco slug, tags');
+
+    return produtos;
 };
 
 exports.create = (data) => {

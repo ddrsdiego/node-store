@@ -50,19 +50,21 @@ exports.getById = async(req, res, next) => {
     }
 };
 
-exports.getByTags = (req, res, next) => {
-    produtoRepositorio
-        .getByTags(req.params.tags)
-        .then(data => {
-            if (typeof data !== 'undefined' && data.length > 0) {
-                res.status(200).send(data);
-            } else {
-                res.status(404).send();
-            }
-        })
-        .catch(error => {
-            res.status(400).send(error);
+exports.getByTags = async(req, res, next) => {
+    try {
+        let produtos = await produtoRepositorio.getByTags(req.params.tags);
+
+        if (!produtos || typeof produtos === 'undefined') {
+            res.status(404).send();
+        } else {
+            res.status(200).send(produto);
+        }
+    } catch (error) {
+        res.status(500).send({
+            message: 'Falha ao processar requisição!',
+            error: error
         });
+    }
 };
 
 exports.post = (req, res, next) => {

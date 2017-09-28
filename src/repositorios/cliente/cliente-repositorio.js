@@ -9,7 +9,7 @@ exports.create = async(data) => {
 };
 
 exports.get = async() => {
-    var clientes = await ClienteModel
+    let clientes = await ClienteModel
         .find({
             ativo: true
         });
@@ -17,10 +17,10 @@ exports.get = async() => {
 };
 
 exports.getByEmail = async(email) => {
-    var cliente = await ClienteModel
+    let cliente = await ClienteModel
         .findOne({
             ativo: true,
             email: email
         }, 'nome email username');
-        return cliente;
+    return cliente;
 };
