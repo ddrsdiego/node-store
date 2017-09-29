@@ -18,13 +18,13 @@ const pedido = new Schema({
         default: Date.now
     },
     status: {
-        type: Date,
+        type: String,
         required: true,
         enum: ['registrado', 'realizado'],
         default: 'registrado'
     },
     itens: [{
-        quantiadade: {
+        quantidade: {
             type: Number,
             required: true,
             default: 1
@@ -33,7 +33,7 @@ const pedido = new Schema({
             type: Number,
             required: true
         },
-        preco: {
+        produto: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Produto'
         }        

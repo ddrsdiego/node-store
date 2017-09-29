@@ -3,13 +3,18 @@
 const mongoose = require('mongoose');
 const PedidoModel = mongoose.model('Pedido');
 
-exports.criar = async(pedido) => {
+exports.registrarPedido = async(pedido) => {
     let novoPedido = new PedidoModel(pedido);
-    return await novoPedido.save(novoPedido);
+    await novoPedido.save();
 };
 
 exports.consultarPedidos = async() => {
-    let pedidos = await PedidoModel.find({});
+    let pedidos = await PedidoModel
+        .find({
+
+        }, 'numeroPedido status cliente itens')
+        .populate('cliente', 'nome')
+        .populate('itens.produto', 'titulo');
     console.log(pedidos);
     return pedidos;
 };
